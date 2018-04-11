@@ -1,0 +1,19 @@
+<p-dataTable [rows]="10" [paginator]="true" [value]="pessoas | pessoaOrdenacao:'nome'">
+
+  <p-column field="id" header="ID"></p-column>
+
+  <p-column field="nome" filter="true" header="Nome"></p-column>
+
+  <p-column field="email" header="E-mail"></p-column>
+
+  <p-column header="Data de Nascimento">
+
+    <ng-template pTemplate="body" let-obj="rowData">
+
+      {{obj.dataNascimento | date:'dd/MM/yyyy'}}
+
+    </ng-template>
+
+  </p-column>
+
+</p-dataTable>
