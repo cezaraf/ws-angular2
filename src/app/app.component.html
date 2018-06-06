@@ -1,15 +1,315 @@
-<h1>
-  {{title}}
-</h1>
+<app-loader></app-loader>
 
-<ul>
+<app-dialog-mensagens></app-dialog-mensagens>
 
-  <li><a routerLink="pagina-cadastro-pessoa">IR PARA PÁGINA DE CADASTRO DE PESSOA</a></li>
+<form>
 
-  <li><a routerLink="pagina-cadastro-pessoa-primeng">IR PARA PÁGINA DE CADASTRO DE PESSOA (PRIMENG)</a></li>
+  <assinador-bry
 
-</ul>
+    [disabled]="disabled"
 
-<hr>
+    [toggleable]="toggleable"
 
-<router-outlet></router-outlet>
+    [collapsed]="collapsed"
+
+    [accept]="accept"
+
+    [header]="header"
+
+    [uploadLabel]="uploadLabel"
+
+    [cancelLabel]="cancelLabel"
+
+    [uploadAuto]="uploadAuto"
+
+    [canCoSign]="canCoSign"
+
+    [canDeleteFiles]="canDeleteFiles"
+
+    [canViewSigners]="canViewSigners"
+
+    [canDownloadFiles]="canDownloadFiles"
+
+    [uploadEnabled]="uploadEnabled"
+
+    [chooseLabel]="chooseLabel"
+
+    [tableFilesToSign]="tableFilesToSign"
+
+    [tableSignedFiles]="tableSignedFiles"
+
+    (onDeletedFile)="deleteFile($event)"
+
+    [(arquivos)]="arquivos"></assinador-bry>
+
+</form>
+
+<br />
+
+<p-dialog
+
+  [(visible)]="exibirModalDeleteFile"
+
+  header="Dados de exclusão"
+
+  [closable]="false"
+
+  [draggable]="false"
+
+  [closeOnEscape]="false"
+
+  width="500"
+
+  [modal]="true">
+
+  <div class="ui-g ui-g-fluid">
+
+    <pre>{{eventoDeleteFile}}</pre>
+
+  </div>
+
+  <p-footer>
+
+    <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+
+      <button type="button" pButton icon="fa-close" label="FECHAR" (click)="exibirModalDeleteFile = false"></button>
+
+    </div>
+
+  </p-footer>
+
+</p-dialog>
+
+<p-panel [toggleable]="true" [collapsed]="true" header="Setup">
+
+  <p-panel header="1 - Instalação">
+
+    <pre>npm install git+http://git@git.tcm.go/sinfo-public/tcm-base-angular2.git --save</pre>
+
+  </p-panel>
+
+  <br />
+
+  <p-panel header="2 - Configuração">
+
+    <pre><code class="language-javascript">
+      @NgModule({{'{'}}
+        declarations: [...],
+        imports: [
+          ...,
+          BryModule.forRoot({{'{'}}
+            servidorDeAssinatura: 'http://servidor-de-assinatura',
+            tokenPermissao: 'token' || () => {{'{'}} return obterTokenDoUsuarioLogado() {{'}'}}, // pode configurar diretamente o token ou uma função que obtem o token
+            sistema: 'nome-do-sistema' // será criada uma pasta root no alfresco com o nome parametrizado aqui
+          {{'}'}}),
+          ...
+        ],
+        ...
+      })
+      export class Module {{'{'}}{{'}'}}</code></pre>
+
+  </p-panel>
+
+</p-panel>
+
+<br/>
+
+<p-panel [toggleable]="true" [collapsed]="true" header="Configurações do componente">
+
+  <div class="ui-g ui-fluid" style="height: 400px; overflow: auto">
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo disabled">
+
+        <p-checkbox [(ngModel)]="disabled" binary="true" label="Habilitar / desabilitar o componente de assinatura?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo toggleable">
+
+        <p-checkbox [(ngModel)]="toggleable" binary="true" label="Pode expandir / minimizar o componente de assinatura?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo collapsed">
+
+        <p-checkbox [(ngModel)]="collapsed" binary="true" label="Pode esconde / mostra o conteúdo do componente de assinatura?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo canCoSign">
+
+        <p-checkbox [(ngModel)]="canCoSign" binary="true" label="Pode realizar coassinaturas? Ao selecionar a linha é possível realizar uma coassinatura dos arquivos assinados!"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo canDeleteFiles">
+
+        <p-checkbox [(ngModel)]="canDeleteFiles" binary="true" label="Pode remover arquivos? É necessário implementar o (onDeletedFile) e no evento chamar o método remove() que retorna uma promise! EXCLUI O ARQUIVO NO ALFRESCO!"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo canViewSigners">
+
+        <p-checkbox [(ngModel)]="canViewSigners" binary="true" label="Pode visualizar os signatários dos arquivos?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo canDownloadFiles">
+
+        <p-checkbox [(ngModel)]="canDownloadFiles" binary="true" label="Pode realizar o download dos arquivos?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo uploadEnabled">
+
+        <p-checkbox [(ngModel)]="uploadEnabled" binary="true" label="Pode fazer upload de arquivos para assinatura?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo uploadAuto">
+
+        <p-checkbox [(ngModel)]="uploadAuto" binary="true" label="O upload dos arquivos é automático?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo multipleUpload">
+
+        <p-checkbox [(ngModel)]="multipleUpload" binary="true" label="Pode ser feito múltiplos uploads?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo toggleable">
+
+        <p-checkbox [(ngModel)]="toggleable" binary="true" label="O upload dos arquivos é automático?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo header">
+
+        <input type="text" [(ngModel)]="header" pInputText />
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo accept">
+
+        <input type="text" [(ngModel)]="accept" pInputText />
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo uploadLabel">
+
+        <input type="text" [(ngModel)]="uploadLabel" pInputText />
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo cancelLabel">
+
+        <input type="text" [(ngModel)]="cancelLabel" pInputText />
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo chooseLabel">
+
+        <input type="text" [(ngModel)]="chooseLabel" pInputText />
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo tableFilesToSign">
+
+        <input type="text" [(ngModel)]="tableFilesToSign" pInputText />
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo tableSignedFiles">
+
+        <input type="text" [(ngModel)]="tableSignedFiles" pInputText />
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo [(arquivos)]">
+
+        <p>Atributo no qual será enviado um conjunto de arquivos ao componente e o mesmo será atualizado após a assinatura de um arquivo!</p>
+
+        <pre>{{arquivos|json}}</pre>
+
+      </p-panel>
+
+    </div>
+
+  </div>
+
+</p-panel>

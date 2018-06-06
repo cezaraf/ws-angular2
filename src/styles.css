@@ -1,10 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
 h1 {
 
-    color: blue;
+  color: blue;
 }
 
 .fundo-vermelho {
 
-    background-color: red;
+  background-color: red;
+}
+
+.ui-float-label {
+
+  display: block;
+
+  position: relative;
+}
+
+.ui-float-label > label {
+  font-weight: 400;
+  position: absolute;
+  pointer-events: none;
+  left: .25em;
+  top: 50%;
+  margin-top: -.5em;
+  transition: .3s ease all;
+  -moz-transition: .3s ease all;
+  -webkit-transition: .3s ease all;
+  color: #898989;
+  line-height: 1;
+}
+
+.ui-float-label>.ui-inputwrapper-filled~label, .ui-float-label>.ui-inputwrapper-focus~label, .ui-float-label>input.ui-state-filled~label, .ui-float-label>input:focus~label {
+  top: -.75em;
+  font-size: 12px;
 }
