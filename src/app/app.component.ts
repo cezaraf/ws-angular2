@@ -33,7 +33,7 @@ export class AppComponent {
 
   exibirModalDeleteFile = false;
 
-  canCoSign = false;
+  canSignInformedFiles = false;
 
   canDeleteFiles = false;
 
@@ -41,12 +41,14 @@ export class AppComponent {
 
   canDownloadFiles = true;
 
+  canDownloadOriginalFiles = true;
+
   uploadEnabled = true;
 
   eventoDeleteFile = {};
 
   arquivos = [
-    {id: 'd8f3705e-3939-4862-a8fa-be0b127b9405'}
+    {id: '6e4f6a7b-7b5a-454b-b721-5dd241aa9904'}
   ];
 
   dataNascimento = new Date();

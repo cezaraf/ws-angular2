@@ -22,13 +22,15 @@
 
     [uploadAuto]="uploadAuto"
 
-    [canCoSign]="canCoSign"
+    [canSignInformedFiles]="canSignInformedFiles"
 
     [canDeleteFiles]="canDeleteFiles"
 
     [canViewSigners]="canViewSigners"
 
     [canDownloadFiles]="canDownloadFiles"
+
+    [canDownloadOriginalFiles]="canDownloadOriginalFiles"
 
     [uploadEnabled]="uploadEnabled"
 
@@ -150,9 +152,9 @@
 
     <div class="ui-g-12">
 
-      <p-panel [toggleable]="true" [collapsed]="true" header="atributo canCoSign">
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo canSignInformedFiles">
 
-        <p-checkbox [(ngModel)]="canCoSign" binary="true" label="Pode realizar coassinaturas? Ao selecionar a linha é possível realizar uma coassinatura dos arquivos assinados!"></p-checkbox>
+        <p-checkbox [(ngModel)]="canSignInformedFiles" binary="true" label="Pode realizar coassinaturas? Ao selecionar a linha é possível realizar uma coassinatura dos arquivos assinados!"></p-checkbox>
 
       </p-panel>
 
@@ -183,6 +185,16 @@
       <p-panel [toggleable]="true" [collapsed]="true" header="atributo canDownloadFiles">
 
         <p-checkbox [(ngModel)]="canDownloadFiles" binary="true" label="Pode realizar o download dos arquivos?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo canDownloadOriginalFiles">
+
+        <p-checkbox [(ngModel)]="canDownloadOriginalFiles" binary="true" label="Pode realizar o download do arquivo original dos arquivos P7S?"></p-checkbox>
 
       </p-panel>
 

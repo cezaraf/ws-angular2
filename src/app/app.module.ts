@@ -1,12 +1,14 @@
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BaseModule, BryModule } from 'tcm-base-angular2';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    RouterModule,
     BaseModule,
     BryModule.forRoot({
       servidorDeAssinatura: 'http://10.10.110.227:8080',
