@@ -9,6 +9,8 @@ export class AppComponent {
 
   multipleUpload = true;
 
+  onlyUpload = false;
+
   disabled = false;
 
   collapsed = false;
@@ -48,7 +50,7 @@ export class AppComponent {
   eventoDeleteFile = {};
 
   arquivos = [
-    {id: '6e4f6a7b-7b5a-454b-b721-5dd241aa9904'}
+    {id: '3d932ce5-782b-4052-89ae-3630a6dc87ab'}
   ];
 
   dataNascimento = new Date();

@@ -6,6 +6,8 @@
 
   <assinador-bry
 
+    [onlyUpload]="onlyUpload"
+
     [disabled]="disabled"
 
     [toggleable]="toggleable"
@@ -45,6 +47,14 @@
     [(arquivos)]="arquivos"></assinador-bry>
 
 </form>
+
+<br />
+
+<p-panel [toggleable]="true" [collapsed]="true" header="[arquivos]">
+
+  <pre>{{arquivos|json}}</pre>
+
+</p-panel>
 
 <br />
 
@@ -125,6 +135,16 @@
       <p-panel [toggleable]="true" [collapsed]="true" header="atributo disabled">
 
         <p-checkbox [(ngModel)]="disabled" binary="true" label="Habilitar / desabilitar o componente de assinatura?"></p-checkbox>
+
+      </p-panel>
+
+    </div>
+
+    <div class="ui-g-12">
+
+      <p-panel [toggleable]="true" [collapsed]="true" header="atributo onlyUpload">
+
+        <p-checkbox [(ngModel)]="onlyUpload" binary="true" label="Somente upload?"></p-checkbox>
 
       </p-panel>
 
@@ -225,16 +245,6 @@
       <p-panel [toggleable]="true" [collapsed]="true" header="atributo multipleUpload">
 
         <p-checkbox [(ngModel)]="multipleUpload" binary="true" label="Pode ser feito múltiplos uploads?"></p-checkbox>
-
-      </p-panel>
-
-    </div>
-
-    <div class="ui-g-12">
-
-      <p-panel [toggleable]="true" [collapsed]="true" header="atributo toggleable">
-
-        <p-checkbox [(ngModel)]="toggleable" binary="true" label="O upload dos arquivos é automático?"></p-checkbox>
 
       </p-panel>
 
